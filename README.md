@@ -26,11 +26,41 @@ The current backdrop is characterized by the frequent use of smart devices to si
 
 [HaGRID - HAnd Gesture Recognition Image Dataset](https://www.kaggle.com/datasets/kapitanov/hagrid)
 
-In our project, we use the subsample of the above dataset as the whole dataset is too big and slow for us to train. And the subsample, the feature generated from the mp_hands model, the keypoint classifier, point history classifier checkpoint can be found [here](https://drive.google.com/drive/folders/1EXHr-K1pcXEE_w2RdjumaqSaftNocv1W?usp=drive_link).
+> **HaGRID** size is **716GB** and dataset contains **552,992 FullHD** (1920 × 1080) RGB images divided into **18** classes of gestures. Also, some images have `no_gesture` class if there is a second free hand in the frame. This extra class contains **123,589** samples. The data were split into training **92%**, and testing **8%** sets by subject **user-id**, with **509,323** images for train and **43,669** images for test.
+
+![](https://raw.githubusercontent.com/hukenovs/hagrid/master/images/gestures.jpg)
+
+> The dataset contains **34,730** unique persons and at least this number of unique scenes. The subjects are people from 18 to 65 years old. The dataset was collected mainly indoors with considerable variation in lighting, including artificial and natural light. Besides, the dataset includes images taken in extreme conditions such as facing and backing to a window. Also, the subjects had to show gestures at a distance of 0.5 to 4 meters from the camera.
+
+> The annotations consist of bounding boxes of hands with gesture labels in COCO format `[top left X position, top left Y position, width, height]`. Also, annotations have 21 `landmarks` in format `[x,y]` relative image coordinates, markups of `leading hands` (`left` of `right` for gesture hand) and `leading_conf` as confidence for `leading_hand` annotation. We provide `user_id` field that will allow you to split the train / val dataset yourself.
+
+In our project, we use the subsample of the above dataset as the whole dataset is too big and slow for us to train. Subsample has 100 items per gesture class (~2.5GB) and the annotations of subsample is ~1.2MB.
+
+The subsample, the feature generated from the mediapipe's hands model, the keypoint classifier, point history classifier checkpoint can be found [here](https://drive.google.com/drive/folders/1EXHr-K1pcXEE_w2RdjumaqSaftNocv1W?usp=drive_link).
+
+We add some data augmentation to our subsample dataset (color intensity change, etc.) to help us train a more robust model. **(Todo, 我忘做了 55)**
 
 ### Demo
 
-Todo: add demo images
+**Todo: add demo images, organize this section, add model structure**
+
+#### Generalization Demo
+
+**Todo: add demo images, organize this section**
+
+#### Keypoint Classifier
+
+- Keypoint Classifier Model Structure (Todo: need to change the structure)
+
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/keypoint_classifier_model.png)
+
+- Keypoint classifier train/val curve
+
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/keypoint%20classifier%20curve.jpg)
+
+- Keypoint Classifier Confusion Matrix
+
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/confusion_matrix.png)
 
 | Index | class           |
 | ----- | --------------- |
@@ -52,6 +82,10 @@ Todo: add demo images
 | 15    | three2          |
 | 16    | two_up          |
 | 17    | two_up_inverted |
+
+- Keypoint Classification_report
+
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/classification_report.png)
 
 ### Usage
 
@@ -101,7 +135,7 @@ pip install -r requirements.txt
 
 There might be some differences between Mac and Windows for `TensorFlow` packages, so when there is a conflict, you have to resolve it manually.
 
-### Contributor
+### Contributors
 
 - [@Chen Wei (cwei24)](https://github.com/MRSA-J)
 
