@@ -190,7 +190,7 @@ We plan on working equally across X aspects of the project: (ps:大家可以随�
 
 4. Evaluation and and Visualization: Kangyu Zhu
 5. Fine-tune the model, change the structure and parameters: Together
-6. Model Training: Chen Wei
+6. Model Training: Together
 7. Deployment of the model: Zhongzheng Xu
 8. Write the report and make the poster: Together
 
