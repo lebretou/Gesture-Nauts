@@ -1,4 +1,6 @@
-dataset
+dataset/*
+!dataset/dataset_generator.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
