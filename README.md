@@ -36,7 +36,7 @@ The current backdrop is characterized by the frequent use of smart devices to si
 
 > The annotations consist of bounding boxes of hands with gesture labels in COCO format `[top left X position, top left Y position, width, height]`. Also, annotations have 21 `landmarks` in format `[x,y]` relative image coordinates, markups of `leading hands` (`left` of `right` for gesture hand) and `leading_conf` as confidence for `leading_hand` annotation. We provide `user_id` field that will allow you to split the train / val dataset yourself.
 
-In our project, we use the subsample of the above dataset as the whole dataset is too big and slow for us to train. Subsample has 100 items per gesture class (~2.5GB) and the annotations of subsample is ~1.2MB.
+In our project, we use the subsample of the above dataset as the whole dataset is too big and slow for us to train. Subsample has 100 items per gesture class (~2.5GB) and the annotations of subsample (~1.2MB).
 
 The subsample, the feature generated from the mediapipe's hands model, the keypoint classifier and keypoint_classifier_label can be found [here](https://drive.google.com/drive/folders/1EXHr-K1pcXEE_w2RdjumaqSaftNocv1W?usp=drive_link).
 
@@ -44,11 +44,11 @@ We add some data augmentation to our subsample dataset (color intensity change, 
 
 ### Demo
 
-**Todo: add demo images, organize this section, add model structure**
+Todo: add demo images, organize this section, add model structure
 
 #### Generalization Demo
 
-**Todo: add demo images, organize this section**
+Todo: add demo images, organize this section
 
 #### Keypoint Classifier
 
@@ -89,6 +89,10 @@ We add some data augmentation to our subsample dataset (color intensity change, 
 
 ![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/classification_report.png)
 
+#### Point History Classifier
+
+text
+
 ### Usage
 
 #### Run locally
@@ -97,18 +101,29 @@ We add some data augmentation to our subsample dataset (color intensity change, 
 python app.py
 ```
 
---device
-Specifying the camera device number (Default：0)
---width
-Width at the time of camera capture (Default：960)
---height
-Height at the time of camera capture (Default：540)
---use_static_image_mode
-Whether to use static_image_mode option for MediaPipe inference (Default：Unspecified)
---min_detection_confidence
-Detection confidence threshold (Default：0.5)
---min_tracking_confidence
-Tracking confidence threshold (Default：0.5)
+- --device
+
+  Specifying the camera device number (Default：0)
+
+- --width
+
+  Width at the time of camera capture (Default：960)
+
+- --height
+
+  Height at the time of camera capture (Default：540)
+
+- --use_static_image_mode
+
+  Whether to use static_image_mode option for MediaPipe inference (Default：Unspecified)
+
+- --min_detection_confidence
+
+  Detection confidence threshold (Default：0.5)
+
+- --min_tracking_confidence
+
+  Tracking confidence threshold (Default：0.5)
 
 #### Deployed page
 
@@ -123,11 +138,11 @@ We are working on this.
 
 - Tensorflow 2.3.0 or Later
 
-- tf-nightly 2.5.0.dev or later (Only when creating a TFLite for an LSTM model)
+- tf-nightly 2.5.0.dev or later
 
-- scikit-learn 0.23.2 or Later (Only if you want to display the confusion matrix)
+- scikit-learn 0.23.2 or Later
 
-- matplotlib 3.3.2 or Later (Only if you want to display the confusion matrix)
+- matplotlib 3.3.2 or Later
 
 We also provide our `requirement.txt` file. So all you need to do is:
 
@@ -148,6 +163,8 @@ There might be some differences between Mac and Windows for `TensorFlow` package
 4. We run `keypoint_classification_EN.ipynb` file inside the `model/fine_tune_keypoint_classifier` folder to train our classifier adapter based on our dataset. This file trains our classifier and generate its corresponding checkpoints, which can be found in `model/keypoint_classifier/keypoint_classifier.tflite` file.
 
 5. Run `python app.py`, which serves as pipeline to use our trained model to detect gesture generation.
+
+**Todo: description about history classifier: will do that later**.
 
 ### Contributors
 
@@ -185,5 +202,14 @@ We plan on working equally across X aspects of the project: (ps:大家可以随�
 
 ### Reflections
 
-Our project ultimately turned out to be ok and our model works as expected. It can generate captions that are acceptable and coherent although not being perfect. <br>
-If we have more time, we could implement ...
+Our project ultimately turned out to be ok and our model works as expected. It can generate captions that are acceptable and coherent although not being perfect.
+
+Current issues:
+
+- text
+
+If we have more time, we could implement:
+
+- text
+- text
+- text
