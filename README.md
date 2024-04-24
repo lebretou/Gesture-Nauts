@@ -8,13 +8,15 @@
 
 3. [Usage](#usage)
 
-4. [Contributors](#contributors)
+4. [Training Pipeline](#training-pipeline)
 
-5. [Division of Labor](#division-of-labor)
+5. [Contributors](#contributors)
 
-6. [Related Work](#related-work)
+6. [Division of Labor](#division-of-labor)
 
-7. [Reflections](#reflections)
+7. [Related Work](#related-work)
+
+8. [Reflections](#reflections)
 
 ### Description
 
@@ -36,9 +38,9 @@ The current backdrop is characterized by the frequent use of smart devices to si
 
 In our project, we use the subsample of the above dataset as the whole dataset is too big and slow for us to train. Subsample has 100 items per gesture class (~2.5GB) and the annotations of subsample is ~1.2MB.
 
-The subsample, the feature generated from the mediapipe's hands model, the keypoint classifier, point history classifier checkpoint can be found [here](https://drive.google.com/drive/folders/1EXHr-K1pcXEE_w2RdjumaqSaftNocv1W?usp=drive_link).
+The subsample, the feature generated from the mediapipe's hands model, the keypoint classifier and keypoint_classifier_label can be found [here](https://drive.google.com/drive/folders/1EXHr-K1pcXEE_w2RdjumaqSaftNocv1W?usp=drive_link).
 
-We add some data augmentation to our subsample dataset (color intensity change, etc.) to help us train a more robust model. **(Todo, 我忘做了 55)**
+We add some data augmentation to our subsample dataset (color intensity change, etc.) to help us train a more robust model. **(Todo, 我忘做了 有时间我再做会改 readme 的 现在不加的版本也还行 55)**
 
 ### Demo
 
@@ -135,6 +137,18 @@ pip install -r requirements.txt
 
 There might be some differences between Mac and Windows for `TensorFlow` packages, so when there is a conflict, you have to resolve it manually.
 
+### Training Pipeline
+
+1. Download the HaGRID's image & annotation subset from [HaGRID kaggle webpage](https://www.kaggle.com/datasets/kapitanov/hagrid) or [our google drive](https://drive.google.com/drive/folders/1EXHr-K1pcXEE_w2RdjumaqSaftNocv1W). If you download from google drive, we are refer to the `ori_dataset` and `ann_subsample` folder. Put both of these inside the `Gesture-Nauts > dataset` folder
+
+2. Run `dataset_generator.ipynb` inside the `Gesture-Nauts > dataset` folder to get the 43 dimension feature map where the 1st dimension is the label and the following 42 dimensions is the location information we extract from our dataset image using the pretrained mediapipe's hands model.
+
+3. After running step 2, we get 2 csv file `keypoint.csv` and `keypoint_classifier_label.csv` where `keypoint.csv` is kind of feature map and `keypoint_classifier_label.csv` is the dataset labels. These 2 csv file can be found in the dataset folder after running step 2. And we need to make a copy and place the copy inside the `model/fine_tune_keypoint_classifier` folder.
+
+4. We run `keypoint_classification_EN.ipynb` file inside the `model/fine_tune_keypoint_classifier` folder to train our classifier adapter based on our dataset. This file trains our classifier and generate its corresponding checkpoints, which can be found in `model/keypoint_classifier/keypoint_classifier.tflite` file.
+
+5. Run `python app.py`, which serves as pipeline to use our trained model to detect gesture generation.
+
 ### Contributors
 
 - [@Chen Wei (cwei24)](https://github.com/MRSA-J)
@@ -145,9 +159,9 @@ There might be some differences between Mac and Windows for `TensorFlow` package
 
 ### Division of labor
 
-We plan on working equally across X aspects of the project:
+We plan on working equally across X aspects of the project: (ps:大家可以随意在下面自己做的下面加小点的，就像 3 一样，concise 就行)
 
-1. Preprocess the data: Together
+1. Dataset generator: Chen Wei
 
 2. Design the model: Together
 
