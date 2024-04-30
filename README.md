@@ -40,7 +40,7 @@ In our project, we use the subsample of the above dataset as the whole dataset i
 
 The subsample, the feature generated from the mediapipe's hands model, the keypoint classifier and keypoint_classifier_label can be found [here](https://drive.google.com/drive/folders/1EXHr-K1pcXEE_w2RdjumaqSaftNocv1W?usp=drive_link).
 
-We add some data augmentation to our subsample dataset (color intensity change, etc.) to help us train a more robust model. **(Todo, 我忘做了 有时间我再做会改 readme 的 现在不加的版本也还行 55)**
+We add some data augmentation to our subsample dataset (flip,scale,rotate, etc.) to help us train a more robust model. 
 
 ### Demo
 
