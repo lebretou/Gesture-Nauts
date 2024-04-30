@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Access</title>
+</head>
+<body>
+    <h1>Camera Access</h1>
+    <img id="video" src="{{ url_for('video_feed') }}" width="640" height="480">
+    <button id="toggleProcessingButton">Toggle Processing</button>
+
+    <script>
+        const video = document.getElementById('video');
+        const toggleProcessingButton = document.getElementById('toggleProcessingButton');
+
+        toggleProcessingButton.addEventListener('click', () => {
+            fetch('/toggle_processing')
+                .then(response => response.text())
+                .then(data => {
+                    toggleProcessingButton.textContent = data;
+                });
+        });
+    </script>
+</body>
+</html>
