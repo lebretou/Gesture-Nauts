@@ -1,23 +1,159 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Camera Access</title>
+    <title>GestureNauts: Animation on Hand Gesture Recognition</title>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background: #adc178;
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Organize children vertically */
+            align-items: center;
+            min-height: 100vh;
+        }
+        header {
+            width: 100%; /* Ensures the header spans the full width */
+            background: #adc178; /* Optional: background color if needed */
+            text-align: center;
+            padding: 10px 0;
+            margin: 15px;
+        }
+        h1 {
+            color: white;
+            font-size: 35px;
+            margin: 0; /* Remove margin to fit better */
+        }
+        .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: start; /* This aligns children to the start along the cross-axis */
+        width: 85%;
+        flex-wrap: wrap; /* This allows children to wrap if needed */
+        height: auto; /* Ensure the container can grow as needed */
+    }
+
+    .left_panel {
+        background-color: #f0ead2;
+        border-radius: 20px;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 65%;
+        text-align: center;
+        margin: 30px;
+    }
+
+    .right_panel {
+        background-color: #f0ead2;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 20%;
+        height: 100%;
+        text-align: center;
+        margin: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* Align self is added to center this panel independently on the cross-axis */
+        align-self: center;
+    }
+
+        
+        button {
+            background-color: #a98467;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .emoji-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .emoji {
+            font-size: 150px;
+            margin-bottom: 20px;
+        }
+
+        .gesture-name {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #dde5b6;
+            border-radius: 5px;
+        }
+        .button-container {
+            display: flex;
+            width: 100%; /* Takes full width of the parent */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 50px; /* Or whatever height you prefer */
+        }
+        #video {
+            border-radius: 20px;
+            width: 100%;
+            height: auto;
+        }
+        </style>
 </head>
+<header>
+    <h1><i>GestureNauts</i> 🥑: Animation on Hand Gesture Recognition</h1>
+</header>
 <body>
-    <h1>Camera Access</h1>
-    <img id="video" src="{{ url_for('video_feed') }}" width="640" height="480">
-    <button id="toggleProcessingButton">Toggle Processing</button>
+    <div class="container">
+        <div class="left_panel">
+            <img id="video" src="{{ url_for('video_feed') }}" width="640" height="480">
+            <div class="button-container">
+                <button class="button" id="toggleProcessingButton"><b>Animate!</b></button>
+            </div>
+        </div>
+        <div class="right_panel">
+            <div class="emoji-container">
+                <div class="emoji">🦄</div>
+                <div class="gesture-name">Start animating 👈🏻</div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        const video = document.getElementById('video');
+        let updateInterval = null;
+
+        function updateGesture() {
+            fetch('/current_gesture')
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector('.emoji').textContent = data.emoji;
+                    document.querySelector('.gesture-name').textContent = data.gesture;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
         const toggleProcessingButton = document.getElementById('toggleProcessingButton');
 
         toggleProcessingButton.addEventListener('click', () => {
             fetch('/toggle_processing')
-                .then(response => response.text())
+                .then(response => response.json())
                 .then(data => {
-                    toggleProcessingButton.textContent = data;
-                });
+                    toggleProcessingButton.textContent = data.message;
+                    if (data.processing) {
+                        updateInterval = setInterval(updateGesture, 500); // Start updating gestures
+                    } else {
+                        clearInterval(updateInterval); // Stop updating gestures
+                        document.querySelector('.emoji').textContent = "🦄";
+                        document.querySelector('.gesture-name').textContent = "Start animating 👈🏻";
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         });
     </script>
 </body>

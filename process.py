@@ -78,6 +78,7 @@ def process_frame(frame):
     results = hands.process(frame_rgb)
     frame_rgb.flags.writeable = True
     output_image = frame.copy()
+    label = ""
 
     if results.multi_hand_landmarks:
         for hand_landmarks, handedness in zip(results.multi_hand_landmarks, results.multi_handedness):
@@ -110,16 +111,13 @@ def process_frame(frame):
             # Drawing
             output_image = draw_bounding_rect(True, output_image, brect)
             output_image = draw_landmarks(output_image, landmark_list)
-            output_image = draw_info_text(
-                output_image, brect, handedness,
-                keypoint_classifier_labels[hand_sign_id],
-                point_history_classifier_labels[most_common_fg_id[0][0]]
-            )
+
+            label = point_history_classifier_labels[most_common_fg_id[0][0]]
     else:
         point_history.append([0, 0])
 
     output_image = draw_point_history(output_image, point_history)
-    return output_image
+    return output_image, label
 
 
 
