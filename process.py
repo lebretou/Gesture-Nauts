@@ -113,6 +113,8 @@ def process_frame(frame):
             output_image = draw_landmarks(output_image, landmark_list)
 
             label = point_history_classifier_labels[most_common_fg_id[0][0]]
+            label= keypoint_classifier_labels[hand_sign_id]
+            print(label)
     else:
         point_history.append([0, 0])
 

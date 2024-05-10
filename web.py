@@ -1,7 +1,7 @@
 from flask import Flask, render_template, Response, jsonify
 import cv2
 from process import process_frame
-
+from time import sleep
 app = Flask(__name__)
 
 # Video source and capture setup
@@ -47,6 +47,7 @@ def gen_frames():
         frame = cv2.resize(frame, (640, 480))  # Resize frame to fit the canvas
         if processing_enabled:
             frame, label = process_frame(frame)  # Process the frame if enabled
+            label= label.capitalize()
             emoji = emoji_map.get(label, "❓")
             if label not in emoji_map:
                 current_gesture = {'gesture': "Gesture not detected...", 'emoji': "❓"}
@@ -57,6 +58,7 @@ def gen_frames():
 
         ret, buffer = cv2.imencode('.jpg', frame)
         frame = buffer.tobytes()
+        # sleep(0.1)
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
