@@ -44,11 +44,9 @@ We add some data augmentation to our subsample dataset (flip,scale,rotate, etc.)
 
 ### Demo
 
-Todo: add demo images, organize this section, add model structure
-
 #### Generalization Demo
 
-Todo: add demo images, organize this section
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/local_demo.png)
 
 #### Keypoint Classifier
 
@@ -92,7 +90,7 @@ Todo: add demo images, organize this section
 
 - Keypoint Classification_report
 
-![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/classification_report.png)
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/classification_report_conv_no_aug.png)
 
 #### Point History Classifier
 
@@ -134,8 +132,7 @@ python app.py
 
 #### Local Demo
 
-Todo: add plot
-run the following command to view it
+Run the following command to view it
 
 ```
 python web.py
