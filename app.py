@@ -545,3 +545,6 @@ def draw_info(image, fps, mode, number):
     return image
 
 
+# for debugging purpose
+if __name__ == '__main__':
+    main()
