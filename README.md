@@ -54,15 +54,20 @@ Todo: add demo images, organize this section
 
 - Keypoint Classifier Model Structure (Todo: need to change the structure)
 
-![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/keypoint_classifier_model.png)
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/keypoint_classifier_model_conv.png)
 
 - Keypoint classifier train/val curve
 
-![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/keypoint%20classifier%20curve.jpg)
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/accuracy_curve_conv_no_aug.png)
+
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/loss_curve_conv_no_aug.png)
 
 - Keypoint Classifier Confusion Matrix
 
-![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/confusion_matrix.png)
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/confusion_matrix_conv_no_aug.png)
+
+
+- Keypoint Class Mapping
 
 | Index | class           |
 | ----- | --------------- |
@@ -125,9 +130,9 @@ python app.py
 
   Tracking confidence threshold (Default：0.5)
 
-#### Deployed page
+#### Local Demo
 
-Todo:
+Todo: add plot
 We are working on this.
 
 #### Package Requirements
@@ -176,7 +181,7 @@ There might be some differences between Mac and Windows for `TensorFlow` package
 
 ### Division of labor
 
-We plan on working equally across X aspects of the project: (ps:大家可以随意在下面自己做的下面加小点的，就像 3 一样，concise 就行)
+We plan on working equally across X aspects of the project: 
 
 1. Dataset generator: Chen Wei
 
@@ -191,7 +196,7 @@ We plan on working equally across X aspects of the project: (ps:大家可以随�
 4. Evaluation and and Visualization: Kangyu Zhu
 5. Fine-tune the model, change the structure and parameters: Together
 6. Model Training: Together
-7. Deployment of the model: Zhongzheng Xu
+7. Local Model Demo: Zhongzheng Xu
 8. Write the report and make the poster: Together
 
 ### Related Work
