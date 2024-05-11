@@ -52,7 +52,7 @@ Todo: add demo images, organize this section
 
 #### Keypoint Classifier
 
-- Keypoint Classifier Model Structure (Todo: need to change the structure)
+- Keypoint Classifier Model Structure
 
 ![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/keypoint_classifier_model_conv.png)
 
@@ -64,7 +64,7 @@ Todo: add demo images, organize this section
 
 - Keypoint Classifier Confusion Matrix
 
-![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/confusion_matrix_conv_no_aug.png)
+![](https://github.com/MRSA-J/Gesture-Nauts/blob/main/plots/confusion_matrix_conv_no_aug.jpg)
 
 
 - Keypoint Class Mapping
@@ -96,7 +96,9 @@ Todo: add demo images, organize this section
 
 #### Point History Classifier
 
-text
+A model to visualize the history of fingertip coordinates. We did not train this on ourselves since we have to manually collect the dataset. Instead, we use a pretrained point_history classifier to visualize the history.
+
+If you run `python app.py`, you can press "h" to enter the mode to save the history of fingertip corrdinates (displayed as "MODE:Logging Point History").
 
 ### Usage
 
@@ -133,7 +135,11 @@ python app.py
 #### Local Demo
 
 Todo: add plot
-We are working on this.
+run the following command to view it
+
+```
+python web.py
+```
 
 #### Package Requirements
 
@@ -211,10 +217,10 @@ Our project ultimately turned out to be ok and our model works as expected. It c
 
 Current issues:
 
-- text
+- Our model performs well for some classes, while it does not perform well for others. We have tried various types of model combinations to solve this problem.
 
 If we have more time, we could implement:
 
-- text
-- text
-- text
+- Besides data augmentation, we can use a bigger dataset to train our model.
+- Try more hyperparameter settings.
+- Manually collect the point_history data and also train the point_history_classifier based on our model.
