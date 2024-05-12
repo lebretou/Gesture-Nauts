@@ -168,7 +168,7 @@ There might be some differences between Mac and Windows for `TensorFlow` package
 
 3. After running step 2, we get 2 csv file `keypoint.csv` and `keypoint_classifier_label.csv` where `keypoint.csv` is kind of feature map and `keypoint_classifier_label.csv` is the dataset labels. These 2 csv file can be found in the dataset folder after running step 2. And we need to make a copy and place the copy inside the `model/fine_tune_keypoint_classifier` folder.
 
-4. We run `keypoint_classification_EN.ipynb` file inside the `model/fine_tune_keypoint_classifier` folder to train our classifier adapter based on our dataset. This file trains our classifier and generate its corresponding checkpoints, which can be found in `model/keypoint_classifier/keypoint_classifier.tflite` file.
+4. We run `keypoint_classification.ipynb` file inside the `model/fine_tune_keypoint_classifier` folder to train our classifier adapter based on our dataset. This file trains our classifier and generate its corresponding checkpoints, which can be found in `model/keypoint_classifier/keypoint_classifier.tflite` file.
 
 5. Run `python app.py`, which serves as pipeline to use our trained model to detect gesture generation.
 
@@ -215,6 +215,7 @@ Our project ultimately turned out to be ok and our model works as expected. It c
 Current issues:
 
 - Our model performs well for some classes, while it does not perform well for others. We have tried various types of model combinations to solve this problem.
+- The combination include (1)using dense layer + no data augmentation (2) using dense layer + data augmentation (3) using convolution layer + no data augmentation (4) using convolution layer + data augmentation. More details can be found in our final report.
 
 If we have more time, we could implement:
 
