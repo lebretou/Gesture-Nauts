@@ -210,7 +210,7 @@ We plan on working equally across X aspects of the project:
 
 ### Reflections
 
-Our project ultimately turned out to be ok and our model works as expected. It can generate captions that are acceptable and coherent although not being perfect.
+Our project ultimately turned out to be ok and our model works as expected. It can classify gestures that are acceptable and coherent although not being perfect.
 
 Current issues:
 
